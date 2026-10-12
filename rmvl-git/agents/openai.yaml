@@ -1,0 +1,4 @@
+interface:
+  display_name: "RMVL Git"
+  short_description: "RDT Git、提交、推送与 GitHub PR 工作流"
+  default_prompt: "使用 $rmvl-git 完成 RMVL 仓库的分支、提交、推送或 Pull Request 工作流。"
