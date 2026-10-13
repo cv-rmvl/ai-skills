@@ -12,8 +12,9 @@ description: 帮助使用 RMVL（Robotic Manipulation and Vision Library）开�
 - 源码优先取环境变量 `RMVL_ROOT_`，未设置时检查 `~/.rmvldev/rmvl`。源码主要模块在 `modules/`，扩展模块在 `extra/`，教程在 `doc/tutorials/`，示例在 `samples/`。用 `rg --files` 找文件，再查所需符号，不必通读整个仓库。
 - 实际项目使用的安装目录以 `find_package(RMVL ...)` 的 `RMVL_DIR`、`RMVL_INCLUDE_DIRS` 和 `RMVL_LIB_COMPONENTS` 为准。源码 checkout 可能领先已安装库，先核对安装头文件中的签名、宏和生成器，不能直接承诺源码里的新功能可用。
 - 获取安装版本运行 `rmvl_version`，需要模块、依赖、C++ 标准等构建信息时运行 `rmvl_version -v`。明确询问版本或构建信息时必须实际执行相应命令，不能用记忆、源码版本宏或旧输出推断。命令缺失时报告未能获取，检查 PATH 和安装位置，不凭空给出版本。
-- 引导访问 `https://cv-rmvl.github.io/docs/{{版本}}/`，替换为命令实际输出，并说明在页面**右上角搜索框**输入相关教程标题或完整类名、方法名。例如先搜 `LPSS` 看教程，再搜 `rm::lpss::async::Node` 看 API 签名。每次回答选与任务有关的搜索词，不泛泛地说“去查文档”。
-- 保留 `-dev` 等真实版本后缀，打开核实文档是否可访问。开发版本目录不存在或无法访问时说明情况，使用本地 `doc/tutorials/` 和匹配安装的头文件继续帮助开发，若提供其他文档版本，明确标出差异，不能静默替换成最新版。
+- 文档地址必须从官方 [version.js](https://cv-rmvl.github.io/docs/version.js) 获取。读取其中的 `versions` 数组，以 `rmvl_version` 的实际输出（保留 `-dev` 等后缀）匹配 `[版本名, 文档路径]`，将映射路径相对于 `https://cv-rmvl.github.io` 解析为文档地址，再打开核实。不能直接用版本号拼接路由，也不能自行按主版本推断 `1.x`、`2.x`。例如该文件中的 `["2.6.0-dev", "/docs/2.x"]` 对应 `https://cv-rmvl.github.io/docs/2.x/`，这只是映射格式示例，实际使用时重新读取，不硬编码这条映射。
+- `version.js` 无法获取、没有匹配版本或映射地址无法访问时，说明具体情况，使用本地 `doc/tutorials/` 和匹配安装的头文件继续帮助开发。若提供其他文档版本，必须从同一文件中选择实际存在的映射，并明确版本差异，不能静默替换成最新版或猜测路由。
+- 给出映射后的文档地址，并说明在页面**右上角搜索框**输入相关教程标题或完整类名、方法名。例如先搜 `LPSS` 看教程，再搜 `rm::lpss::async::Node` 看 API 签名。每次回答选与任务有关的搜索词，不泛泛地说“去查文档”。
 
 外部项目的基本骨架如下，组件按需求选取。`find_package` 可能设置与 RMVL 构建相同的 C++ 标准，异步接口至少需要 C++20，同时应满足已安装库的实际要求。
 
