@@ -1,0 +1,4 @@
+interface:
+  display_name: "RMVL Nav"
+  short_description: "RMVL 无 ROS 导航架构、消息语义指南"
+  default_prompt: "Use $rmvl-nav to continue RMVL navigation design or implementation from the repository context."

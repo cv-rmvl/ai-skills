@@ -1,4 +1,4 @@
 interface:
   display_name: "RMVL LViz"
-  short_description: "LViz 前后端开发、显示插件调试与正式包集成工作流"
+  short_description: "LViz 开发、调试、集成工作流"
   default_prompt: "使用 $rmvl-lviz 完成 LViz 前后端开发、显示插件集成与正式发布同步。"

@@ -1,4 +1,4 @@
 interface:
   display_name: "RMVL Dev Tools"
-  short_description: "RDT 与 LPSS CLI、脚手架和运行时诊断指南"
+  short_description: "RDT 与 LPSS CLI 的脚手架运行与诊断指南"
   default_prompt: "使用 $rmvl-dev-tools 完成 RMVL Dev Tools 命令行、LPSS 脚手架或运行时诊断任务。"

@@ -29,14 +29,18 @@ git log -8 --pretty=format:%h%x09%s
 - `rdt git reword`：修改上一提交消息。仅在用户明确要求时使用。
 - `rdt git update`：RMVL 专用组合流程，包含切换分支、远端同步、推送和 `git reset --hard 2.x`。仅在用户明确授权完整流程，并核对 stash、工作树和分支状态后使用。
 
-`rdt update` 更新 Dev Tools 本身，不等同于 `rdt git update`。RDT 不适合当前工作树时回退到原生 Git，并说明原因。
+提交时优先使用 RDT。工作树全部属于当前提交且没有未知文件时，必须实际执行 `rdt git commit`，不能只运行 `rdt git help` 后直接使用原生 `git commit`。用户要求新建分支且满足上述单一主题条件时，可使用 `rdt git newbr`。
+
+仅在 RDT 不可用、执行失败，或其隐式 `git add .` 会混入其他主题、本地配置、构建产物或未知文件时，回退到原生 Git 精确暂存和提交，并向用户说明具体原因。已有精确暂存本身不是回退理由，单独的提交与推送请求也不需要为了使用 RDT 而新建分支。
+
+`rdt update` 更新 Dev Tools 本身，不等同于 `rdt git update`。
 
 ## 创建分支与提交
 
 1. 确认目标基准分支以及本地、`origin`、`upstream` 的关系。RMVL 2.x 通常基于 `upstream/2.x`，但不要只按分支名称推断。
 2. 在用户要求发布或明确允许同步时获取最新基准。若基准前进，先安全处理当前工作树，再决定变基或重建分支。
 3. 创建语义明确的分支。工作树较复杂时使用原生 `git switch -c <branch>`。
-4. 按改动主题拆分提交，使用 `git add -- <paths...>` 精确暂存。不要把本地配置、构建产物或其他主题带入提交。
+4. 按改动主题拆分提交。单一主题且工作树全部属于当前提交时使用 `rdt git commit`，需要拆分或排除文件时使用原生 Git，以 `git add -- <paths...>` 精确暂存。不要把本地配置、构建产物或其他主题带入提交。
 5. 对每笔提交检查：
 
 ```bash
@@ -78,6 +82,8 @@ git status --short --branch
 - 未提交改动：xxx（总结概括即可，没有就写“无”）
 - 其他说明：xxx（没有就写“无”）
 ```
+
+如果有多个仓库的提交，这些内容分开展示，不要混在一个表格中。
 
 ## 创建 GitHub Pull Request
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "RMVL Helper"
+  short_description: "RMVL 小助手（开发、IDL 生成、版本查询）"
+  default_prompt: "使用 $rmvl-helper，结合本地 RMVL 头文件和版本文档完成开发任务，提供 API 用法、CMake 配置及文档搜索词，按需实际查询版本和构建信息。"
